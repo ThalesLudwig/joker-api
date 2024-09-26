@@ -21,11 +21,6 @@ public class Card {
         this.suit = suit;
     }
 
-    @SuppressWarnings("unused")
-    public String getVisualRepresentation() {
-        return "[" + this.getHeadSymbol() + getSuitSymbol() + "]";
-    }
-
     public String getHeadSymbol() {
         return switch (displayValue) {
             case 1, 14 -> "A";
@@ -36,6 +31,7 @@ public class Card {
         };
     }
 
+    @SuppressWarnings("unused")
     public String getSuitSymbol() {
         return switch (suit) {
             case CLUBS -> "♣";

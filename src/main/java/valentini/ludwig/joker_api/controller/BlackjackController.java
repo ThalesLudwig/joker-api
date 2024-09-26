@@ -1,13 +1,11 @@
-package valentini.ludwig.joker_api.controller.blackjack;
+package valentini.ludwig.joker_api.controller;
 
-import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import valentini.ludwig.joker_api.dto.GameResponse;
-import valentini.ludwig.joker_api.dto.GameRequest;
 import valentini.ludwig.joker_api.interfaces.IGameController;
 import valentini.ludwig.joker_api.model.Card;
 import valentini.ludwig.joker_api.model.Deck;
-import valentini.ludwig.joker_api.service.blackjack.BlackjackService;
+import valentini.ludwig.joker_api.service.BlackjackService;
 
 import java.util.ArrayList;
 
@@ -50,14 +48,14 @@ public class BlackjackController implements IGameController {
         }
     }
 
-    @PostMapping(value = "/start", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public GameResponse start(@RequestBody GameRequest req) {
-        return BlackjackService.start(req);
+    @GetMapping("/start")
+    public GameResponse start(@RequestParam double cash, @RequestParam double bet) {
+        return BlackjackService.start(cash, bet);
     }
 
-    @PostMapping(value = "/bet", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public GameResponse bet(@RequestBody GameRequest req) {
-        return BlackjackService.setBet(req.bet());
+    @GetMapping("/bet")
+    public GameResponse bet(@RequestParam double value) {
+        return BlackjackService.setBet(value);
     }
 
     @GetMapping("/stop")
